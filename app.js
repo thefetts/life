@@ -68,28 +68,41 @@ Life.prototype.clear = function() {
 	this.displayGrid(this.grid);
 };
 
-Life.prototype.decodeGrid = function(string) {
-	var arr = string.split('');
-	var pos = 0;
+Life.prototype.decodeGrid = function(data) {
+	var value = true;
 	var grid = [];
-	for(var i = 0; i < this.x; i++) {
-		grid[i] = [];
-		for(var j = 0; j < this.y; j++) {
-			grid[i][j] = (arr[pos] == '1' ? true : false);
-			pos++;
+	var counter = 0;
+	var row = 0;
+	var that = this;
+	data.split('').forEach(function(digit) {
+		var num = parseInt(digit, 36);
+		for(var i = 0; i < num; i++) {
+			if(counter === 0) {
+				grid[row] = [];
+			}
+
+			grid[row][counter] = value;
+			counter++;
+
+			if(counter === that.y) {
+				counter = 0;
+				row++;
+			}
 		}
-	}
+		value = value === false ? true : false;
+	});
+
 	return grid;
 };
 
 Life.prototype.displayGrid = function(grid) {
 	var html = '';
 
-	for(var i = 0; i < grid.length; i++) {
-		var row = grid[i];
+	for(var i = 0; i < this.x; i++) {
+		var row = grid[i] || [];
 		html += '<div class="row" id="row'+i+'">';
-		for(var j = 0; j < row.length; j++) {
-			var cell = row[j];
+		for(var j = 0; j < this.y; j++) {
+			var cell = row[j] || 0;
 			html += '<div class="cell" id="cell-'+i+'-'+j+'"'+(cell?' on="true"':'')+'></div>';
 		}
 		html += '</div>';
@@ -99,15 +112,29 @@ Life.prototype.displayGrid = function(grid) {
 };
 
 Life.prototype.generateCode = function(grid) {
-	var vals = '';
+	var data = '';
+	var run = 0;
+	var value = true;
 	for(var i in grid) {
 		var row = grid[i];
 		for(var j in row) {
-			vals += (row[j] ? '1' : '0');
+			if(row[j] === value) {
+				run++;
+
+				if(run > 35) {
+					data += 'z0';
+					run = 1;
+				}
+			} else {
+				data += run.toString(36);
+				run = 1;
+				value = value === true ? false : true;
+			}
 		}
 	}
+	data += run.toString(36);
 
-	$('#link').val('http://jerryfallon.com/life?'+vals);
+	$('#link').val('http://jerryfallon.com/life?'+data);
 };
 
 Life.prototype.makeGrid = function(x, y) {
