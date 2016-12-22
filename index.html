@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>The Game of Life</title>
-		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-		<script src="app.js"></script>
-		<link rel="stylesheet" type="text/css" href="style.css" />
-	</head>
-	<body>
-		<h2>The Game of Life</h2>
-		<strong>Rule 1:</strong> 2 neighbors, retain state <strong>Rule 2:</strong> 3 neighbors, turn on <strong>Rule 3:</strong> otherwise, turn off
-		<div id="grid"></div>
-		<button id="clear">Clear</button> <button id="nextGeneration">Next Generation</button><br/><br/>
-		<button id="randomize">Randomize</button> 5% <input type="range" id="percent" min="5" max="90" value="20" /> 90%<br/><br/>
-		<span id="status" class="stopped">Stopped</span><br/>
-		<button id="autoPlay">Auto Play</button> <button id="stop">Stop</button><br/><br/>
-		<input type="text" id="link" value="http://jerryfallon.com" />
-	</body>
+  <head>
+    <title>The Game of Life</title>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+  </head>
+  <body>
+    <h2>The Game of Life</h2>
+    <div>
+      <strong>Rule 1:</strong> 2 neighbors, no change
+      <strong>Rule 2:</strong> 3 neighbors, turn on
+      <strong>Rule 3:</strong> otherwise, turn off
+    </div>
+    <div id="grid"></div>
+    <div>
+      <button id="clear">Clear</button>
+      <button id="nextGeneration">Next Generation</button>
+    </div>
+    <div>
+      <button id="randomize">Randomize</button>
+      5% <input type="range" id="percent" min="5" max="90" value="20"/> 90%
+    </div>
+    <div>
+      <button id="autoPlay">Auto Play</button>
+      <button id="stop">Stop</button>
+    </div>
+    <input type="text" id="link" title="Link"/>
+  </body>
+  <script src="app.js"></script>
 </html>

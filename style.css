@@ -1,50 +1,53 @@
 body {
-	text-align: center;
-	font-family: 'Arial';
-	margin: 0;
-	padding: 0;
+  text-align: center;
+  font-family: 'Arial', serif;
+  margin: 0;
+  padding: 0;
+}
+
+body > div {
+  margin-bottom: 20px;
 }
 
 h2 {
-	margin: 0;
+  margin: 0;
 }
 
 #grid {
-	margin: 0 auto;
-	width: 1000px;
-	border-top: 1px solid #999;
-	border-left: 1px solid #999;
-	margin-bottom: 25px;
+  width: 1000px;
+  border-top: 1px solid #999;
+  border-left: 1px solid #999;
+  margin: 0 auto 25px;
 }
 
 .row {
-	display: block;
-	height: 20px;
-	width: 1000px;
+  display: block;
+  height: 20px;
+  width: 1000px;
 }
 
 .cell {
-	height: 19px;
-	width: 19px;
-	border-right: 1px solid #999;
-	border-bottom: 1px solid #999;
-	display: inline-block;
-	overflow: hidden;
+  height: 19px;
+  width: 19px;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+  display: inline-block;
+  overflow: hidden;
 }
 
 .cell[on='true'] {
-	background-color: black;
+  background-color: black;
 }
 
 #link {
-	text-align: center;
-	width: 375px;
+  text-align: center;
+  width: 375px;
 }
 
 #status {
-	color: green;
+  color: green;
 }
 
 #status.stopped {
-	color: red;
+  color: red;
 }
