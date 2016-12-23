@@ -29,7 +29,7 @@ class Life {
     data += run.toString(36);
 
     const l = window.location;
-    document.querySelector('#link').value = `${l.protocol}//${l.hostname}${`:${l.port}` || ''}${l.pathname}?${data}`;
+    document.querySelector('#link').value = `${l.protocol}//${l.hostname}${l.port ? `:${l.port}` : ''}${l.pathname}?${data}`;
   }
 
   autoPlay() {
