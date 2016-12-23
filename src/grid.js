@@ -1,23 +1,17 @@
 class Grid {
-  constructor(cb) {
+  constructor(cb, gridNode) {
     this.x = 30;
     this.y = 50;
     this.grid = [];
     this.cb = cb;
-
-    this.initHandlers();
-  }
-
-  initHandlers() {
-    ['randomize', 'clear', 'nextGeneration'].forEach(action =>
-      document.querySelector(`#${action}`).onclick = this[action].bind(this));
+    this.gridNode = gridNode;
   }
 
   build() {
-    let queryString = window.location.search;
+    let queryString = Tint.location().search;
 
     if (queryString)
-      this.decode(queryString.substr(1));
+      this.decode(queryString.slice(1));
     else
       this.clear();
   }
@@ -48,9 +42,8 @@ class Grid {
       state = !state;
     });
 
-    for (; row < this.x; row++) {
+    while(++row < this.x)
       grid[row] = [];
-    }
 
     this.grid = grid;
     this.display();
@@ -68,7 +61,7 @@ class Grid {
       }
       html += `</div>`;
     }
-    document.querySelector('#grid').innerHTML = html;
+    this.gridNode.innerHTML = html;
     this.resetHandlers();
     this.cb(this.grid);
   }
@@ -121,7 +114,7 @@ class Grid {
           y = this.dataset.y;
         that.grid[x][y] = !that.grid[x][y];
         this.setAttribute('on', that.grid[x][y]);
-        this.cb(this.grid);
+        that.cb(that.grid);
       });
   }
 }

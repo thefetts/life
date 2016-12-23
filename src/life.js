@@ -1,10 +1,9 @@
 class Life {
   constructor() {
     this.interval = null;
-    this.grid = new Grid(this.generateCode);
+    this.grid = new Grid(this.generateCode, document.querySelector('#grid'));
 
     this.grid.build();
-    this.initHandlers();
   }
 
   generateCode(grid) {
@@ -43,10 +42,5 @@ class Life {
   stop() {
     clearInterval(this.interval);
     this.interval = null;
-  }
-
-  initHandlers() {
-    ['stop', 'autoPlay'].forEach(action =>
-      document.querySelector(`#${action}`).onclick = this[action].bind(this));
   }
 }
