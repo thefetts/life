@@ -3,4 +3,6 @@ applications:
 - name: life
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack
   memory: 128m
+  routes:
+  - route: jslife.cfapps.io
   disk_quota: 64m
